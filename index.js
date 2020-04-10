@@ -73,7 +73,10 @@ cron.schedule("0 59 23 * * *", () => {
 })
 
 //Keep Heroku Site Alive( kinda a dick move)
-const fakeGet = axios.get(appUrl)
+setInterval(() => {
+  axios.get(appUrl);
+}, 5 * 60  * 1000); // every 5 minutes
+
 
 
 ///. basic static serve.
