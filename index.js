@@ -1,5 +1,5 @@
 const express = require('express')
-const port = 5000
+const port = process.env.PORT || 5000
 const axios = require('axios')
 const cheerio = require('cheerio')
 const siteUrl = 'https://www.worldometers.info/coronavirus/country/india/'
