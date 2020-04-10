@@ -72,6 +72,9 @@ cron.schedule("0 59 23 * * *", () => {
 	fs.writeFileSync('./core.json',JSON.stringify(coreData),'utf-8')
 })
 
+//Keep Heroku Site Alive( kinda a dick move)
+const fakeGet = axios.get(appUrl)
+
 
 ///. basic static serve.
 server.use(express.static('public'))
