@@ -9,6 +9,8 @@ const cron = require('node-cron')
 const http = require('http')
 
 const timeZone = {timezone:'Asia/Kolkata'}
+const appUrl = "http://covid-india-69.herokuapp.com"
+
 
 const server = express()
 server.listen(port, () => {
@@ -77,8 +79,9 @@ cron.schedule("0 59 23 * * *", () => {
 
 //Keep Heroku Site Alive( kinda a dick move)
 setInterval(() => {
-  http.get(appUrl);
-}, 5 * 60  * 1000); // every 5 minutes
+	console.log("keeping alive" + new Date())
+  	http.get(appUrl);
+}, 1 * 60  * 1000); // every 5 minutes
 
 
 
