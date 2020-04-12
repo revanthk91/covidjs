@@ -8,7 +8,6 @@ const ejs = require('ejs')
 const cron = require('node-cron')
 const http = require('http')
 
-const timeZone = {timezone:'Asia/Kolkata'}
 const appUrl = "http://covid-india-69.herokuapp.com"
 
 
@@ -69,21 +68,15 @@ const commaProcess = (stringNums) => {
 cron.schedule("0 0 */1 * * *", () => {
 	update(siteUrl)
 	console.log('hourly updated cachce at ' + new Date())
-},timeZone)
+})
 
 cron.schedule("0 59 23 * * *", () => {
 	let coreData = JSON.parse(fs.readFileSync('./core.json'))
 	coreData.lastDay = coreData.total; //reseting last day to end Day count
 	fs.writeFileSync('./core.json',JSON.stringify(coreData),'utf-8')
-},timeZone)
+})
 
-//Keep Heroku Site Alive( kinda a dick move)
-setInterval(() => {
-	console.log("keeping alive" + new Date())
-  	http.get(appUrl);
-}, 1 * 60  * 1000); // every 5 minutes
-
-
+//aright bois. we got a Old Linux 8gb SSD Laptop with 24/7 power and network.
 
 ///. basic static serve.
 server.use(express.static('public'))
