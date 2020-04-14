@@ -86,7 +86,7 @@ cron.schedule("0 0 */1 * * *", () => {
 })
 
 cron.schedule("0 30 18 * * *", () => {
-	console.log('midnight m812 update. States and Day Count Updated.')
+	console.log('midnight m812 update. States and Day Count Updated.' + currentTime())
 	let coreData = JSON.parse(fs.readFileSync('./core.json'))
 	coreData.lastDay = coreData.total; //reseting last day to end Day count
 	fs.writeFileSync('./core.json',JSON.stringify(coreData),'utf-8')
@@ -104,7 +104,7 @@ server.use(express.static('public'))
 1. fetch and save on hardisk (every hour)
 2. static serve (index.htm,custom.css)
 
-//aright bois. we got a Old Linux 8gb SSD Laptop with 24/7 power and network.
+//aright bois. we got a Old Ubuntu Linux 8gb SSD Laptop with 24/7 power and network.
 */
 
 
