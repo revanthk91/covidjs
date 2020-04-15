@@ -109,7 +109,7 @@ cron.schedule("0 30 18 * * *", () => {
 	updateState(apiUrl) //statesUpdate
 })
 
-
+update(siteUrl)
 
 ///. basic static serve.
 server.use(express.static('public'))
