@@ -39,6 +39,7 @@ const update = async (url) => {
 	var data = commaProcess(data)
 
 	cachePage(data)
+	console.log('hourly updated cachce at ' + currentTime())
 }
 
 
@@ -90,7 +91,6 @@ const updateRank = async (url) => {
 cron.schedule("0 0 */1 * * *", () => {
 	update(siteUrl)		//core update
 	updateRank(rankUrl) //rank update
-	console.log('hourly updated cachce at ' + currentTime())
 })
 
 cron.schedule("0 30 18 * * *", () => {
