@@ -9,20 +9,22 @@
 <body>
 	<h1>Coronavirus in India <i class ='fas fa-rss'></i></h1>
 	<p>last updated <%= lastUpdate %> </p>
+		
 	<ul>
-		<li><strong><%= total[0] %></strong> total confirmed cases</li>
-		<li><strong><%= total[0] - total[1] - total[2] %> </strong> currently active cases</li>
-		<li><strong><%= total[1] %></strong> deaths</li>
-		<li><strong><%= total[2] %></strong> recoveries</li>
+		<li><strong><i class ='fas fa-globe'></i> #<%= rank%></strong> global rank</li>
+		<li><strong><%= total[0].toLocaleString('hi') %></strong> total confirmed cases</li>
+		<li><strong><%= (total[0] - total[1] - total[2]).toLocaleString('hi') %> %> </strong> currently active cases</li>
+		<li><strong><%= total[1].toLocaleString('hi') %> %></strong> deaths</li>
+		<li><strong><%= total[2].toLocaleString('hi') %> %></strong> recoveries</li>
 	</ul>
 
 	<br>
 	<h2>Reports Today</h2>
 	<p>resets everyday</p>
 	<ul>
-		<li><strong><%= total[0] - lastDay[0] %></strong> new cases</li>
-		<li><strong><%= total[1] - lastDay[1] %></strong> deaths</li>
-		<li><strong><%= total[2] - lastDay[2] %></strong> recoveries</li>
+		<li><strong><%= (total[0] - lastDay[0]).toLocaleString('hi') %> %></strong> new cases</li>
+		<li><strong><%= (total[1] - lastDay[1]).toLocaleString('hi') %> %></strong> deaths</li>
+		<li><strong><%= (total[2] - lastDay[2]).toLocaleString('hi') %> %></strong> recoveries</li>
 	</ul>
 
 	<br>

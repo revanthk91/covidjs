@@ -11,6 +11,7 @@ const moment = require('moment-timezone')
 
 const appUrl = "http://covid-india-69.herokuapp.com"
 const apiUrl = "https://api.data.gov.in/resource/cd08e47b-bd70-4efb-8ebc-589344934531?format=viz&limit=all&api-key=579b464db66ec23bdd000001cdc3b564546246a772a26393094f5645&_=1586501432931"
+const rankUrl = "https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
 
 const server = express()
 server.listen(port, () => {
@@ -76,12 +77,26 @@ const commaProcess = (stringNums) => {
 	return array
 }
 
+const updateRank = async (url) => {
+	let html = await axios.get(url)
+	let $ = cheerio.load(html.data)
+
+	let rank = $('tr:contains("India")').index()
+	rank = Number(rank)+1
+
+	let coreData = JSON.parse(fs.readFileSync('./core.json'))
+	coreData.rank = rank
+
+	fs.writeFileSync('./core.json',JSON.stringify(coreData),'utf-8')
+
+}
 
 
 //Scheduled Cron Jobs
 
 cron.schedule("0 0 */1 * * *", () => {
-	update(siteUrl)
+	update(siteUrl)		//core update
+	updateRank(rankUrl) //rank update
 	console.log('hourly updated cachce at ' + currentTime())
 })
 
@@ -94,7 +109,7 @@ cron.schedule("0 30 18 * * *", () => {
 	updateState(apiUrl) //statesUpdate
 })
 
-update(siteUrl)
+
 
 ///. basic static serve.
 server.use(express.static('public'))
