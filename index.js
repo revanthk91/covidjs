@@ -1,5 +1,3 @@
-const express = require('express')
-const port = 80
 const axios = require('axios')
 const cheerio = require('cheerio')
 const siteUrl = 'https://www.worldometers.info/coronavirus/country/india/'
@@ -12,11 +10,6 @@ const moment = require('moment-timezone')
 const appUrl = "http://covid-india-69.herokuapp.com"
 const apiUrl = "https://api.data.gov.in/resource/cd08e47b-bd70-4efb-8ebc-589344934531?format=viz&limit=all&api-key=579b464db66ec23bdd000001cdc3b564546246a772a26393094f5645&_=1586501432931"
 const rankUrl = "https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
-
-const server = express()
-server.listen(port, () => {
-	console.log(`listening on ${port}`)
-})
 
 
 //Kernal Functions
@@ -111,9 +104,7 @@ cron.schedule("0 30 18 * * *", () => {
 
 update(siteUrl)
 
-///. basic static serve.
-server.use(express.static('public'))
-
+//github merge hell. gotta sort it.
 /*
 
 1. fetch and save on hardisk (every hour)
