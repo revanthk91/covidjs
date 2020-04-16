@@ -91,6 +91,7 @@ const updateRank = async (url) => {
 cron.schedule("0 0 */1 * * *", () => {
 	update(siteUrl)		//core update
 	updateRank(rankUrl) //rank update
+	updateState(apiUrl)
 })
 
 cron.schedule("0 30 18 * * *", () => {
@@ -98,11 +99,11 @@ cron.schedule("0 30 18 * * *", () => {
 	let coreData = JSON.parse(fs.readFileSync('./core.json'))
 	coreData.lastDay = coreData.total; //reseting last day to end Day count
 	fs.writeFileSync('./core.json',JSON.stringify(coreData),'utf-8')
-
-	updateState(apiUrl) //statesUpdate
 })
 
 update(siteUrl)
+updateRank(rankUrl)
+updateState(apiUrl)
 
 //github merge hell. gotta sort it.
 /*

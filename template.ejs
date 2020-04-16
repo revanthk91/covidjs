@@ -2,20 +2,21 @@
 <html>
 <head>
 	<title>Covid-19 India | LIVE</title>
-	<link rel="stylesheet" type="text/css" href="/custom.css">
+	<link rel="stylesheet" type="text/css" href="custom.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://kit.fontawesome.com/79803c7868.js" crossorigin="anonymous"></script>
+	
 </head>
 <body>
 	<h1>Coronavirus in India <i class ='fas fa-rss'></i></h1>
 	<p>last updated <%= lastUpdate %> </p>
 		
 	<ul>
-		<li><strong><i class ='fas fa-globe'></i> #<%= rank%></strong> global rank</li>
+		<li><strong>#<%= rank%></strong> global rank</li>
 		<li><strong><%= total[0].toLocaleString('hi') %></strong> total confirmed cases</li>
 		<li><strong><%= (total[0] - total[1] - total[2]).toLocaleString('hi') %> %> </strong> currently active cases</li>
 		<li><strong><%= total[1].toLocaleString('hi') %> %></strong> deaths</li>
 		<li><strong><%= total[2].toLocaleString('hi') %> %></strong> recoveries</li>
+		<li><strong>lockdown</strong> till may 03*</li>
 	</ul>
 
 	<br>
@@ -49,9 +50,28 @@
 	</table>	
 
 	<br>
+	<h2>About Coronavirus (WHO)</h2>
+	<p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.</p>
+	<p>The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).</p>
+	<p>At this time, there are no specific vaccines or treatments for COVID-19. However, there are many ongoing clinical trials evaluating potential treatments. WHO will continue to provide updated information as soon as clinical findings become available.</p>
+
+	<h2>Why another covid tracker?</h2>
+	<p>There are excellent and well informed covid trackers as covidindia.org, covid19inida.org, Govt. etc. But people with limited network(2G internet) in Remote areas may have trouble loading the sites as they are heavily modified to look better.</p>
+
+	<p>
+		This website is a Very Simple tracker that loads relatively fast on slower networks. Please consider donating if you find this website useful. even 1₹ matters.
+	</p>
+
+	<h2>Remember. Caution, not Panic.</h2>
+
+	<p><a href="whatsapp://send?text=A%20very%20simple%20covid%20india%20tracker%20that%20loads%20fast%20on%20slow%20networks%0D%0Ahttps%3A%2F%2Fcovid-india.xyz" class ='fab fa-whatsapp icon'></a>
+
+		<a href="https://twitter.com/share?url=covid-india.xyz&text=A%20very%20simple%20covid%20india%20tracker%20that%20loads%20fast%20on%20slow%20networks" class ='fab fa-twitter icon'></a></p>
+
+	<p>contant: nanirevanth45@gmail.com, donate: revanthkumar@upi</p>
 	<p> copyright (c) 2020 by Revanth Kumar. covid-india.xyz (alpha).</p>
 
-
+	<script src="https://kit.fontawesome.com/79803c7868.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
