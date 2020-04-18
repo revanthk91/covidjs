@@ -49,6 +49,7 @@ td {
 }
 
 table {
+	border-collapse: collapse;
 	width: 100%;
 	border-spacing: 0;
 
@@ -68,6 +69,19 @@ table {
 a {
 	text-decoration: none;
 }
+
+.link {
+	text-decoration: underline;
+	color: grey;
+	font-style: italic;
+}
+
+/*STATE ANIM*/
+.child {
+	height: 0px;
+}
+
+
 
 /*-------------------------------------------*/
 

@@ -10,6 +10,7 @@ const moment = require('moment-timezone')
 const appUrl = "http://covid-india-69.herokuapp.com"
 const apiUrl = "https://api.data.gov.in/resource/cd08e47b-bd70-4efb-8ebc-589344934531?format=viz&limit=all&api-key=579b464db66ec23bdd000001cdc3b564546246a772a26393094f5645&_=1586501432931"
 const rankUrl = "https://www.worldometers.info/coronavirus/countries-where-coronavirus-has-spread/"
+const extraUrl = "https://api.covid19india.org/v2/state_district_wise.json"
 
 
 //Kernal Functions
@@ -85,6 +86,36 @@ const updateRank = async (url) => {
 
 }
 
+const updateDetailed = async (url) => {
+	let raw = await axios.get(url)
+	let extraData = raw.data
+
+	extraData.forEach(x => {
+		x.districtData.sort((a,b) => -(a.confirmed-b.confirmed))
+		let count = 0
+		x.districtData.forEach(x => {
+			count += x.confirmed
+			if (x.delta.confirmed == 0) {
+				x.delta.confirmed = ""
+			} else {
+				x.delta.confirmed = "(+" + x.delta.confirmed + ")"
+			}
+		})
+		x.total = count
+	})
+
+	extraData.sort((a,b) => b.total-a.total)
+	let data = { "core": extraData }
+	data.lastUpdate = currentTime()
+	
+
+
+	let template = fs.readFileSync('./extras.ejs','utf-8')
+	let newHtml = ejs.render(template, data)
+
+	fs.writeFileSync('./public/extra.html',newHtml,'utf-8')
+
+}
 
 //Scheduled Cron Jobs
 
@@ -92,6 +123,7 @@ cron.schedule("0 0 */1 * * *", () => {
 	update(siteUrl)		//core update
 	updateRank(rankUrl) //rank update
 	updateState(apiUrl)
+	updateDetailed(extraUrl)
 })
 
 cron.schedule("0 30 18 * * *", () => {
@@ -101,13 +133,21 @@ cron.schedule("0 30 18 * * *", () => {
 	fs.writeFileSync('./core.json',JSON.stringify(coreData),'utf-8')
 })
 
+//INIT
+update(siteUrl)	
+updateRank(rankUrl) 
+updateState(apiUrl)
+updateDetailed(extraUrl)
+
+
+
+/*
 update(siteUrl)
 updateRank(rankUrl)
 updateState(apiUrl)
+*/
 
-//github merge hell. gotta sort it.
 /*
-
 1. fetch and save on hardisk (every hour)
 2. static serve (index.htm,custom.css)
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Covid-19 India | Detailed</title>
+	<link rel="stylesheet" type="text/css" href="extra.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Coronavirus District cases in India</h1>
+	<p>last updated <%= lastUpdate %>. source: covid19india.org</p>
+	<p>Ranked a/c to heighest cases. click on state to view more</p>
+
+	<ol>
+	<% core.forEach(x => { %>
+			<li>
+			<h2><%= x.state %></h2>
+			<table>
+			<% x.districtData.forEach(d => { %>
+
+				<tr>
+					<td><%= d.district %></td>
+					<td> <%= d.confirmed %> <span><%= d.delta.confirmed %></span> </td>
+				</tr>
+
+			<% }) %>
+			</table>
+			</li>
+	<% }) %>
+	</ol>
+
+	<script type="text/javascript">
+		$('li').click(function() {
+			$(this).find('table').toggleClass('show')
+			$(this).find('h2').toggleClass('select')
+		})
+	</script>
+</body>
+	
+	
+</html>
