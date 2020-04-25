@@ -7,6 +7,9 @@ Start Server:
 npm install && npm start
 ```
 
+The current Working site is:
+https://covid-india.xyz
+
 for serving, either use nginx of express.static
 
 by Revanth Kumar
