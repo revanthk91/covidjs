@@ -13,4 +13,3 @@ https://covid-india.xyz
 for serving, either use nginx of express.static
 
 by Revanth Kumar
-donate: revanthkumar@upi
