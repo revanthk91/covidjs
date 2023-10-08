@@ -7,8 +7,8 @@ Start Server:
 npm install && npm start
 ```
 
-The current Working site is:
-https://covid-india.xyz
+### archived site ( project closed after lockdown ended ):
+https://web.archive.org/web/20200528235601/https://covid-india.xyz/
 
 for serving, either use nginx of express.static
 
